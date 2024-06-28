@@ -1,0 +1,32 @@
+.desc-con{
+    color: #fcfff6;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.sub-desc-1{
+    font-size: 4.5rem;
+    font-weight: 700;
+    opacity: 0; 
+    animation: fadeInText 2s ease forwards; 
+}
+
+.sub-desc-2{
+    font-size: 3rem;
+    opacity: 0;
+    animation: fadeInText 2s ease forwards; 
+}
+
+@keyframes fadeInText {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        opacity: 0;
+    }
+    100% {
+        text-shadow: none;
+        opacity: 1;
+    }
+}
