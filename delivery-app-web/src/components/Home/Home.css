@@ -1,66 +1,79 @@
-.parent-con{
-    position:absolute;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    height:100%;
-    width:100%;
+.parent-con {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
     background-color: #fcfff6;
-
 }
 
-.sub-con{
+.sub-con {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px;
+    font-size: 20px;
 }
 
-.menu-con{
+.menu-con {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap:55px;
-    margin: 30px 80px;  
-    font-size: 20px;
+    gap: 55px;
+    /* margin: 30px 80px; */
     font-weight: 700;
 }
 
-.icon-img{
+.icon-img {
     width: 35px;
     height: 35px;
 }
 
-.title-con{
+.title-con {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 8px;
-    margin: 40px 20px;
+    /* margin: 40px 20px; */
 }
 
-.title{
-    font-size: 20px;
+.title {
     font-weight: 700;
 }
 
-.body-con{
-    height: 30%;
-    background-image: url('./src/assets/images/bg-grocery.jpg');
-    background-size: 100%;  
+.body-con {
+    height: 40%;
+    background-image: url('src/assets/images/bg-grocery.jpg');
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    width: 100vw;
 }
 
-/* .card-con{
+.card-con {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     height: 20%;
-} */
+}
 
-.offer-card-con{
+.offer-card-con {
     height: 100%;
     width: 50%;
-} 
+}
+
+
+@media (max-width: 480px) {
+    .sub-con {
+        font-size: 15px;
+        margin: 10px;
+    }
+    .menu-con{
+        gap: 10px !important;
+    }
+
+}

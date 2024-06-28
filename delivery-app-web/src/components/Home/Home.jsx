@@ -23,8 +23,6 @@ const Home = () => {
             <AppDesc/>
         </div>
         <div className='card-con'>
-            {/* <div className='offer-card-con'><OfferCards/></div>
-            <div className='offer-card-con'></div> */}
         </div>
     </div>
   )
