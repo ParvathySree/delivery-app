@@ -1,0 +1,85 @@
+.signup-btn{
+    color: #b11e0c;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.signup-btn:hover{
+    color: #e84d38;
+}
+
+.heading {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color:#b11f0e
+}
+
+.acc-text{
+    color: rgb(91, 83, 83);
+}
+
+.cart-icon{
+    width: 50px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-size: 2rem;
+    color:#b11f0e
+
+}
+
+.login-form{
+    display: flex;
+}
+
+
+@media (max-width: 300px) {
+    .acc-text,.signup-btn{
+      font-size: 13px;
+    }
+
+    .heading{
+        font-size: 20px !important;
+    }
+
+    .center-box{
+        padding: 15px !important;
+    }
+}
+@media screen and (min-width: 300px) and (max-width: 500px) {
+    .acc-text, .signup-btn {
+        font-size: 13px;
+    }
+
+    .heading,.title {
+        font-size: 20px !important;
+    }
+}
+
+.caption{
+    font-size: 10px;
+    font-family: "Dancing Script", cursive !important;
+
+}
+
+.loader-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .loader-container {
+    position: relative;
+    z-index: 1; 
+  }

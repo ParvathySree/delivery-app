@@ -1,31 +1,26 @@
 import React from 'react';
-import iconImg from '../../assets/images/icon.png'
-import './Home.css'
-import AppDesc from './AppDesc/AppDesc';
-import OfferCards from './OfferCards/OfferCards';
-
+import { Grid } from '@mui/material';
+import './Home.css';
+import { Outlet,  } from 'react-router-dom';
+import Loader from '../Loader/Loader';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+  const loading = useSelector((state)=>state.user.loading)
+
 
   return (
-    <div className='parent-con'>
-        <div className='sub-con'>
-            <div className='title-con'>
-                <img className="icon-img" src={iconImg}></img>
-                <span className='title'>InstaCart.</span>
-            </div>
-            <div className='menu-con'>
-                <span>Sign Up</span>
-                <span>Log In</span>
-            </div>
+    <>
+    <Grid container className='home' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',flexDirection:'column' }}>
+      <Grid item xs={12} sm={10} md={6} lg={6} xl={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className='center-box'>
+        <Outlet/>
         </div>
-        <div className='body-con'>
-            <AppDesc/>
-        </div>
-        <div className='card-con'>
-        </div>
-    </div>
-  )
+      </Grid>
+    </Grid>
+    {loading &&<Loader loading={loading}/>}
+    </>
+  );
 }
 
-export default Home
+export default Home;
