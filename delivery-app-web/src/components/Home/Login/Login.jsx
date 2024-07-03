@@ -39,20 +39,21 @@ const Login = () => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("first")
         const body = {email : formData.email, password : formData.password}
         userLogin(body)
    
     };
 
     const userLogin = (body) => {
-        try{
-          dispatch(loginUser(body))
-        }
-        catch(e){
-    
-        }
-      }
+      dispatch(loginUser(body))
+          .then(() => {
+              navigate('/instacart/shop');
+          })
+          .catch((error) => {
+
+          });
+  };
+  
 
     const handleNavigate = () => {
         navigate("/signup");

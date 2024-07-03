@@ -2,13 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios";
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css'
+import { setToken,removeToken, getUserDetailsFromToken } from "../utils/cookie-services/cookie";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 const INITIAL_STATE = {
     currentUser: null,
     loading: false,
     error: null,
-    token:null
+    token:"",
+    isLoggedIn:false,
+    userDetails: {}
 }
 
 //API call to login to the application
@@ -53,6 +56,21 @@ const userSlice = createSlice({
         setLoader(state,action) {
             state.loading = action.payload;
         },
+        setIsLoggedIn(state,action) {
+            state.isLoggedIn = action.payload;
+        },
+
+        setJwtToken(state,action) {
+            state.token = action.payload;
+        },
+
+        logOut(state,action) {
+            removeToken();     
+            state.token = "";
+            state.isLoggedIn = false;
+        },
+
+       
     },
     extraReducers : (builder) => {
         builder.addCase(loginUser.pending ,(state,action) => {
@@ -62,7 +80,9 @@ const userSlice = createSlice({
         builder.addCase(loginUser.fulfilled ,(state,action) => {
             state.loading = false;
             state.currentUser = action.payload.email;
+            setToken(action.payload.token);
             state.token = action.payload.token;
+            state.isLoggedIn = true;
 
         })
         builder.addCase(loginUser.rejected ,(state,action) => {
@@ -84,5 +104,7 @@ const userSlice = createSlice({
     }
 })
 
-export const { setLoader } = userSlice.actions;
+export const { setLoader,setJwtToken,setIsLoggedIn,logOut } = userSlice.actions;
+
+
 export default userSlice.reducer;

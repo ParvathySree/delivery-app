@@ -1,0 +1,16 @@
+.grocery-img-con{
+    background-image: url("../../../utils/images/shop-grocery.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 500px;
+    margin: 2%;
+}
+
+.shop-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}

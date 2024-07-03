@@ -7,7 +7,7 @@ html {
 }
 
 .home {
-  background-image: url('src/assets/images/bg-img.jpg');
+  background-image: url('src/utils/images/bg-img.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

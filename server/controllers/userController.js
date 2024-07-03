@@ -18,7 +18,7 @@ const loginUser = async (req,res) => {
             return res.json({success:false,message:"Invalid Credentials"})
         }
 
-        const token = createToken(user._id);
+        const token = createToken(user._id,user.email);
         res.json({success:true,token})
     }
     catch(e){
@@ -28,8 +28,8 @@ const loginUser = async (req,res) => {
     }
 }
 
-const createToken = (id) => {
-    return jwt.sign({id},process.env.JWT_SECRET)
+const createToken = (id,email) => {
+    return jwt.sign({id,email},process.env.JWT_SECRET)
 }
 
 const signupUser = async (req,res) => {

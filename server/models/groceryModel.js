@@ -18,6 +18,10 @@ const grocerySchema = new mongoose.Schema(
             type:String,
             required:true,
         },
+        minQuantity : {
+            type:Integer,
+            required:true
+        }
     }
 )
 
