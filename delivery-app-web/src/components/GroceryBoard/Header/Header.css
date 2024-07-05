@@ -1,3 +1,8 @@
 .cart-icon{
     width: 35px;
 }
+
+.selected-menu{
+    font-weight: 700 !important;
+    background-color: rgb(0,0,0,.2) !important;
+}

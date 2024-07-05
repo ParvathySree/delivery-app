@@ -1,9 +1,39 @@
 import React from 'react'
-import { Card, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Button } from '@mui/material';
+import { Card, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Button, getListSubheaderUtilityClass } from '@mui/material';
 import './ShopCard.css'
+import { Add, Remove } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { getToken } from '../../../../utils/cookie-services/cookie';
+import { addToCart,fetchCartList,removeFromCart } from '../../../../redux/cartReducer';
+import { fetchGroceries } from '../../../../redux/groceryReducer';
 const ShopCard = (props) => {
 
-  const { image, name, description, price, minQuantity } = props.item
+  const token = getToken()
+  const { image, name, description, price, minQuantity,_id } = props.item
+  const {units} = props
+  const dispatch = useDispatch()
+
+  const removeItem = (id) => {
+    const data = {token:token,id : {itemId:id}}
+    dispatch(removeFromCart(data)).then(() => {
+      dispatch(fetchGroceries(data.token))
+  })
+  .catch((error) => {
+
+  });
+  }
+
+  
+  const addItem = (id) => {
+    const data = {token:token,id : {itemId:id}}
+    dispatch(addToCart(data)).then(() => {
+      dispatch(fetchGroceries(data.token))
+  })
+  .catch((error) => {
+
+  });
+  }
+
   return (
     <>
       <Card sx={{ maxWidth: 345, margin: 2 }} className="item-card">
@@ -23,9 +53,17 @@ const ShopCard = (props) => {
             {price + "₹/" + minQuantity / 1000 + "kg"}
           </Typography>
           <CardActions disableSpacing>
-            <Button variant="outlined" size="small" className="add-btn">
+            {
+            units === 0 ?
+            <Button variant="outlined" size="small" className="add-btn" onClick={()=>addItem(_id)}>
              { "Add +"}
-            </Button>
+            </Button> : 
+            <>
+             <IconButton className='unit-btn' onClick={()=>removeItem(_id)} ><Remove /></IconButton>
+             <Typography className=' unit-txt'>{units}</Typography>
+             <IconButton className='unit-btn' onClick={()=>addItem(_id)}><Add /></IconButton>
+            </>
+            }
           </CardActions>
         </CardContent>
       </Card>

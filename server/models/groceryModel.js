@@ -19,8 +19,12 @@ const grocerySchema = new mongoose.Schema(
             required:true,
         },
         minQuantity : {
-            type:Integer,
-            required:true
+            type:String,
+            required:true,
+        },
+        totalQuantity: {
+            type:String,
+            required:true,
         }
     }
 )

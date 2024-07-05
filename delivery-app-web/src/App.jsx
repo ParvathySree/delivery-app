@@ -10,6 +10,7 @@ import { store } from './redux/store'
 import { getToken } from './utils/cookie-services/cookie'
 import { useEffect, useState } from 'react'
 import PrivateRoute from './utils/PrivateRoute/PrivateRoute'
+import Cart from './components/GroceryBoard/Cart/Cart'
 
 function App() {
 
@@ -54,8 +55,8 @@ export const appRouter = createBrowserRouter([
           element:<Shop/>,
         },
         {
-          path:'/instacart/shop',
-          element:<Shop/>,
+          path:'/instacart/cart',
+          element:<Cart/>,
         },]
       }
 

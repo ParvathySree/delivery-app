@@ -1,0 +1,66 @@
+.split-container {
+    display: flex;
+    width: 100%;
+    gap: 20px; /* Optional: adds space between sections */
+  }
+  
+  .table-section {
+    flex: 3;
+  }
+  
+  .bill-section {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .table-con {
+    max-height: 70vh; /* Adjust as needed */
+    margin: 10px;
+  }
+  
+  .title-cart {
+    text-align: center;
+  }
+  
+  .head-cell {
+    font-weight: 700 !important;
+  }
+  
+  .image-con {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 8px;
+  }
+  
+  .image-con img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #b11f0e;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

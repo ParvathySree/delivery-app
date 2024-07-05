@@ -21,7 +21,7 @@ const loginUser = async (req,res) => {
         const token = createToken(user._id,user.email);
         res.json({success:true,token})
     }
-    catch(e){
+    catch(error){
         console.log(error)
         res.json({success:false,message:"Error"})
 

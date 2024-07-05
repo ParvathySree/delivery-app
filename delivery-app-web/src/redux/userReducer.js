@@ -2,9 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios";
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css'
-import { setToken,removeToken, getUserDetailsFromToken } from "../utils/cookie-services/cookie";
+import { API_URL } from "../utils/constants/contants";
+import { setToken,removeToken } from "../utils/cookie-services/cookie";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 const INITIAL_STATE = {
     currentUser: null,
     loading: false,

@@ -9,7 +9,7 @@
     font-weight:700 !important;
 }
 
-.add-btn:hover{
+.add-btn:hover,.unit-btn:hover{
     background-color: rgb(238, 205, 205) !important;
 }
 
@@ -23,4 +23,20 @@
 
 .item-card:hover{
     box-shadow:0px 8px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+.unit-btn,.unit-txt{
+    color: #b11f0e !important;
+    background-color: #fff !important;
+    border-radius: 2px !important;
+    padding: 0 !important;
+   
+}
+
+.unit-txt{
+    padding: 0 5px !important;
+}
+
+.unit-btn{
+    border: 1px solid #b11f0e !important;
 }
