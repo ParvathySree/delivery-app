@@ -1,0 +1,16 @@
+.addr-form{
+    display: flex !important;
+    align-items: center  !important;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+}
+
+.txt-box{
+    margin: 10px !important;
+}
+
+@media (max-width:400px) {
+    .addr-form {
+        flex-direction: column !important;
+    }
+}

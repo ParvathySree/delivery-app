@@ -19,10 +19,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGroceries } from '../../../redux/groceryReducer';
 import { fetchCartList } from '../../../redux/cartReducer';
 import { getToken } from '../../../utils/cookie-services/cookie';
-
-
-
-
+import CartCard from './CartCard/CartCard';
+import Bill from './Bill/Bill';
+import Address from './Address/Address';
+import EmptyCart from './EmptyCart/EmptyCart';
+import Loader from '../../Loader/Loader';
 
 const CartPage = () => {
     const token = getToken()
@@ -30,13 +31,19 @@ const CartPage = () => {
     const dispatch = useDispatch()
     const groceryList = useSelector((state)=>state.grocery.groceryList)
     const cartObj = useSelector((state)=>state.cart.cartObj)
-    const [address, setAddress] = useState('');
-    
+    const loading = useSelector((state)=>state.user.loading)
+    const [total,setTotal] = useState(0);
     
     useEffect(() => {
       const products = filterProducts()
       setFinalCart(products)
   }, [cartObj, groceryList]);
+
+  useEffect(() => {
+    getOrderTotal()
+  }, [finalCart])
+  
+
 
   const filterProducts = () => {
     if (!groceryList || !cartObj) {
@@ -52,50 +59,48 @@ const CartPage = () => {
     return filteredProducts;
 };
 
+  const getOrderTotal = () => {
+    const totalSum = finalCart?.reduce((sum, item) => {
+      return sum + (item.price * item.quantity);
+    }, 0);
+    setTotal(totalSum)
+  }
 
- 
+
+  function isValidObject(obj) {
+    return Object.keys(obj).length === 0 || Object.values(obj).every(value => value <= 0);
+  }
+
 
       
  
 
   return (
+    <>
+    {!isValidObject(cartObj) ?
     <Container>
-      <Typography variant="h4" gutterBottom sx={{textAlign:'center',marginTop:'30px',marginBottom:'30px'}}>Your Cart</Typography>
-      
-      <Paper elevation={3} style={{ marginBottom: '20px', padding: '20px',}}>
-        {/* <Typography variant="h6">Items</Typography> */}
+      <Typography variant="h4" gutterBottom sx={{textAlign:'center',marginTop:'30px',marginBottom:'30px'}}></Typography>
+      <Paper elevation={3} style={{ marginBottom: '20px',  padding: {
+          xs: '8px',  
+          sm: '12px', 
+          md: '16px', 
+          lg: '20px', 
+          xl: '24px'  
+        }}} >
         <List sx={{maxHeight:'400px' ,overflow:'auto'}}>
           {finalCart?.map(item => (
-            <ListItem key={item.name}>
-              <span className='image-con'><img src={item.image}></img> </span>
-              <ListItemText primary={item.name} secondary={`₹${item.price}/${item.minQuantity/1000} kg`} />
-              <IconButton ><Remove /></IconButton>
-              <Typography>{item.quantity}</Typography>
-              <IconButton ><Add /></IconButton>
-              {/* <Button onClick={() => handleRemoveItem(item.id)}>Remove</Button> */}
-            </ListItem>
+            <CartCard key={item._id} item={item}/>
           ))}
         </List>
       </Paper>
-{/*       
-      <Paper elevation={3} style={{ marginBottom: '20px', padding: '20px' }}>
-        <Typography variant="h6">Order Summary</Typography>
-        <Typography>Total Amount: ₹{totalAmount}</Typography>
-      </Paper> */}
-      
-      <Paper elevation={3} style={{ marginBottom: '20px', padding: '20px' }}>
-        <Typography variant="h6">Delivery Details</Typography>
-        <TextField
-          label="Delivery Address"
-          variant="outlined"
-          fullWidth
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-        />
-      </Paper>
-      
-      <Button variant="contained" color="primary" fullWidth>Checkout</Button>
+      <Bill totalBill = {total} />
+      <Address/>
     </Container>
+    :
+    <EmptyCart/>
+  }
+    {loading&& <Loader loading={loading}/>}
+    </> 
   );
 };
 

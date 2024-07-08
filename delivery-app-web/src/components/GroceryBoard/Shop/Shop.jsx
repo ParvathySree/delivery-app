@@ -19,16 +19,7 @@ const Shop = () => {
   const cart = useSelector((state)=>state.cart.cartObj)
   const groceryList = useSelector((state)=>state.grocery.groceryList)
 
-  useEffect(() => {
-    dispatch(setLoader(true))
-    dispatch(fetchGroceries(token)).then(()=>{
-      dispatch(setLoader(false))
-    })
-  }, [])
 
-  useEffect(() => {
-    dispatch(fetchCartList(token))
-  }, [groceryList])
 
 
 
@@ -49,7 +40,8 @@ const Shop = () => {
         />;
       })}
     </div>
-     { loading && <Loader loading={loading}/>}
+    {loading&& <Loader loading={loading}/>}
+
     </>
   );
 };

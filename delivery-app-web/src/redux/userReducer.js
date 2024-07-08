@@ -26,7 +26,8 @@ export const loginUser = createAsyncThunk('user/login',
             return response.data;
         }
         catch(error){
-            return rejectWithValue(error.message)
+            console.error(error)
+
 
         }
     }
@@ -45,7 +46,7 @@ export const signupUser = createAsyncThunk('user/signup',
             return response.data;
         }
         catch(error){
-            return rejectWithValue(error.message)
+            console.error(error)
         }
     }
 )

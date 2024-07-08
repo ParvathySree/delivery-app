@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Button, getListSubheaderUtilityClass } from '@mui/material';
 import './ShopCard.css'
 import { Add, Remove } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { getToken } from '../../../../utils/cookie-services/cookie';
-import { addToCart,fetchCartList,removeFromCart } from '../../../../redux/cartReducer';
+import { addToCart,removeFromCart } from '../../../../redux/cartReducer';
 import { fetchGroceries } from '../../../../redux/groceryReducer';
+import {BeatLoader} from 'react-spinners'
+import Loader from '../../../Loader/Loader';
+
 const ShopCard = (props) => {
 
   const token = getToken()
   const { image, name, description, price, minQuantity,_id } = props.item
   const {units} = props
   const dispatch = useDispatch()
+  const [imgLoad,setImgLoad] = useState(true)
+
+  // useEffect(() => {
+  //   setImgLoad(true)
+  // }, [])
+  
 
   const removeItem = (id) => {
     const data = {token:token,id : {itemId:id}}
@@ -34,16 +43,24 @@ const ShopCard = (props) => {
   });
   }
 
+
+
+  // const handleImgLoad = () => {
+  //   setImgLoad(true)
+  // }
+
   return (
     <>
       <Card sx={{ maxWidth: 345, margin: 2 }} className="item-card">
         <CardMedia
           component="img"
-          height="194"
-          width="300"
+          height='194'
+          width='300'
           image={image}
+          // onLoad={handleImgLoad}
           className="item-img"
         />
+        {/* {imgLoad === true&&<BeatLoader sx={{display:'flex',alignItems:'center'}} loading={imgLoad}/>} */}
         <CardContent sx={{ backgroundColor: '#b11f0e', color: "#fff" ,pb:0}} className="card-content">
           <Typography sx={{ fontWeight: 700, textAlign: 'center' }}>{name}</Typography>
           <Typography variant="body2" sx={{ textAlign: 'center', fontStyle: 'italic' }}>

@@ -4,8 +4,8 @@ import { Menu as MenuIcon, Adb as AdbIcon } from '@mui/icons-material';
 import cartIcon from '../../../utils/images/cart-icon.png';
 import './Header.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { logOut } from '../../../redux/userReducer'
-import {  getToken, getUserDetailsFromToken, removeToken } from '../../../utils/cookie-services/cookie';
+import { logOut, setLoader } from '../../../redux/userReducer'
+import { getToken, getUserDetailsFromToken, removeToken } from '../../../utils/cookie-services/cookie';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGroceries } from '../../../redux/groceryReducer';
@@ -17,16 +17,25 @@ const Header = () => {
   const token = getToken()
   const dispatch = useDispatch()
   const units = useSelector((state) => state.cart.totalCartUnit)
+  const groceryList = useSelector((state) => state.grocery.groceryList)
   const [userDetails, setUserDetails] = useState();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate()
 
   useEffect(() => {
+    dispatch(  setLoader(true))
     setUserDetails(getUserDetailsFromToken())
     dispatch(fetchGroceries(token))
-    dispatch(fetchCartList(token))
   }, [])
+
+  useEffect(() => {
+    if(groceryList.length > 0){
+      dispatch(fetchCartList(token))
+      dispatch(  setLoader(false))
+    }
+  }, [groceryList])
+
 
   const getPathName = () => {
     return location.pathname
@@ -107,23 +116,21 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-
               <MenuItem component={Link} to="/instacart/shop" onClick={handleCloseNavMenu}
+              className={getPathName() === '/instacart/shop' ? 'selected-menu-mob' : 'menu'}
               >
                 <Typography textAlign="center"
-               className={getPathName() === '/instacart/shop' ? 'selected-menu' : 'menu'}
+                  
                 >Shop</Typography
                 >
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}
-               className={location.pathname === '/instacart/contact' ? 'selected-menu' : 'menu'}
+              <MenuItem onClick={handleCloseNavMenu} component={Link} to="/instacart/cart"
+                className={getPathName() === '/instacart/cart' ? 'selected-menu-mob' : 'menu'}
               >
-                <Typography textAlign="center">Contact Us</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}
-               className={location.pathname === '/instacart/cart' ? 'selected-menu' : 'menu'}
-              >
-                <Typography textAlign="center">Cart</Typography>
+                <Typography textAlign="center" >Cart</Typography>
+                <Badge badgeContent={units} color="error" sx={{ '& .MuiBadge-badge': { backgroundColor: '#fff', color: '#b11f0e' }, paddingLeft: '3px' }}>
+                  <ShoppingCartOutlinedIcon />
+                </Badge>
               </MenuItem>
 
             </Menu>
@@ -153,20 +160,9 @@ const Header = () => {
               onClick={handleCloseNavMenu}
               component={Link} to="/instacart/shop"
               sx={{ my: 2, color: 'white', display: 'block' }}
-              className={getPathName() === '/instacart/shop' ? 'selected-menu' : '' }
+              className={getPathName() === '/instacart/shop' ? 'selected-menu' : ''}
             >
               Shop
-            </Button>
-            <Button
-
-              onClick={handleCloseNavMenu}
-              
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              
-
-            >
-              Contact Us
-
             </Button>
             <Button
               component={Link} to="/instacart/cart"
@@ -175,7 +171,7 @@ const Header = () => {
               className={getPathName() === '/instacart/cart' ? 'selected-menu' : ''}
             >
               Cart
-              <Badge badgeContent={units} color="error" sx={{ '& .MuiBadge-badge': { backgroundColor: '#fff', color: '#b11f0e' } ,paddingLeft:'3px'}}>
+              <Badge badgeContent={units} color="error" sx={{ '& .MuiBadge-badge': { backgroundColor: '#fff', color: '#b11f0e' }, paddingLeft: '3px' }}>
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </Button>

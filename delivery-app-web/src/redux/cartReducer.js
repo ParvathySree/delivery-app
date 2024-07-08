@@ -44,10 +44,12 @@ export const addToCart = createAsyncThunk('cart/add',
             if(!response.data.success){
                 toastr.error(response.data.message)
             }
+            toastr.success(response.data.message)
             return response.data;
         }
         catch(error){
-            return rejectWithValue(error.message)
+            console.error(error)
+
         }
     }
 )
@@ -64,10 +66,12 @@ export const removeFromCart = createAsyncThunk('cart/remove',
             if(!response.data.success){
                 toastr.error(response.data.message)
             }
+            toastr.success(response.data.message)
             return response.data;
         }
         catch(error){
-            return rejectWithValue(error.message)
+            console.error(error)
+
         }
     }
 )

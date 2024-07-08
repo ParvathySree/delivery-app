@@ -1,0 +1,8 @@
+.bill-title{
+    margin-bottom: 10px !important;
+    font-weight: 700 !important;
+}
+
+.main-bill{
+    border-bottom: 1px dashed rgb(60, 58, 58) !important;
+}

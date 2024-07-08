@@ -6,3 +6,7 @@
     font-weight: 700 !important;
     background-color: rgb(0,0,0,.2) !important;
 }
+
+.selected-menu-mob{
+    background-color: #b11f0e!important;
+}

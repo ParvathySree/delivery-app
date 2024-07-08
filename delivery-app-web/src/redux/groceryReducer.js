@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { API_URL } from "../utils/constants/contants"
 import toastr from 'toastr';
+import { setLoader } from "./userReducer";
 
 
 const INITIAL_STATE = {
@@ -25,7 +26,8 @@ export const fetchGroceries = createAsyncThunk('grocery',
 
         }
         catch(error){
-            return rejectWithValue(error.message)
+            console.error(error)
+
         }
     }
 )
