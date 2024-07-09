@@ -1,19 +1,21 @@
 import { Box, Button, FormControl, Paper, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import toastr from 'toastr';
 import './Address.css'
 
 const INITIAL_ADDR = {house:'',area:''}
 const Address = () => {
 
     const [address,setAddress] = useState(INITIAL_ADDR)
-    const placeOrder = () => {
-
+    const placeOrder = (event) => {
+        event.preventDefault();
+        toastr.success("Order placed")
     }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setAddress({
-          ...formData,
+          ...address,
           [name]: value
         });
       };
@@ -35,7 +37,7 @@ const Address = () => {
                         className='txt-box'
                         label='House / Flat / Block No.'
                         value={address.house}
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                     <TextField
                         hiddenLabel
@@ -47,7 +49,7 @@ const Address = () => {
                         className='txt-box'
                         label='Apartment / Road / Area'
                         value={address.area}
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                     </Box>
                 <Button type="submit" variant="contained" color="primary" fullWidth sx={{ marginTop: 2, bgcolor: '#b11e0c', fontWeight: 700, '&:hover': { bgcolor: '#BE4333' } }}>Checkout</Button>

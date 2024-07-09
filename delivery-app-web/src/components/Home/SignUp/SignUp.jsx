@@ -50,7 +50,7 @@ const SignUp = () => {
 
 
   const handleNavigate = () => {
-    navigate("/login");
+    navigate("/");
   }
 
   return (
