@@ -11,6 +11,36 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 20px !important;
+    flex-direction: column;
+   
 
 }
+
+.shop-item{
+    width: 100%;
+    padding: 0 !important;
+  
+}
+
+.shop-con{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.no-data{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+}
+
+.search-con{
+    max-width: 600px;
+}
+

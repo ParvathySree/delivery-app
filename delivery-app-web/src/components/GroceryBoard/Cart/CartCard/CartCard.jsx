@@ -39,7 +39,7 @@ const CartCard = (props) => {
   return (
     <ListItem  className="cart-item">
       <span className="image-con"><img src={item.image} alt={item.name} /></span>
-      <ListItemText className='cart-name' primary={item.name} secondary={`₹${item.price}/${item.minQuantity / 1000} kg`} />
+      <ListItemText className='cart-name' primary={item.name} secondary={`₹${item.quantity * item.minQuantity / 1000} kg`} />
       <span className='action-btn'>
       <IconButton className="cart-btn" onClick={()=>removeItem(item._id)}><Remove /></IconButton>
       <Typography className="cart-btn-txt">{item.quantity}</Typography>

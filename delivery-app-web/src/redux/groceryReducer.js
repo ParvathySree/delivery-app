@@ -6,7 +6,8 @@ import { setLoader } from "./userReducer";
 
 
 const INITIAL_STATE = {
-    groceryList : []
+    groceryList : [],
+    searchKey : ''
 }
 
 
@@ -35,7 +36,11 @@ export const fetchGroceries = createAsyncThunk('grocery',
 const grocerySlicer = createSlice({
     name:"grocery",
     initialState: INITIAL_STATE,
-    reducers:{},
+    reducers:{
+        setSearchKey(state,action) {
+            state.searchKey = action.payload;
+        },
+    },
     extraReducers : (builder) => {
         builder.addCase(fetchGroceries.pending ,(state,action) => {
             state.error = null;
@@ -52,7 +57,7 @@ const grocerySlicer = createSlice({
     }
 })
 
-export const {} = grocerySlicer.actions;
+export const {setSearchKey} = grocerySlicer.actions;
 
 
 export default grocerySlicer.reducer;

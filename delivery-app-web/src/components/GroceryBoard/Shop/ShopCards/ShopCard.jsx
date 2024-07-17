@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Button, getListSubheaderUtilityClass } from '@mui/material';
+import { Card, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Button, getListSubheaderUtilityClass, Box, Grid } from '@mui/material';
 import './ShopCard.css'
 import { Add, Remove } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
@@ -51,39 +51,50 @@ const ShopCard = (props) => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, margin: 2 }} className="item-card">
-        <CardMedia
-          component="img"
-          height='194'
-          width='300'
-          image={image}
-          // onLoad={handleImgLoad}
-          className="item-img"
-        />
-        {/* {imgLoad === true&&<BeatLoader sx={{display:'flex',alignItems:'center'}} loading={imgLoad}/>} */}
-        <CardContent sx={{ backgroundColor: '#b11f0e', color: "#fff" ,pb:0}} className="card-content">
-          <Typography sx={{ fontWeight: 700, textAlign: 'center' }}>{name}</Typography>
-          <Typography variant="body2" sx={{ textAlign: 'center', fontStyle: 'italic' }}>
-            {description}
-          </Typography>
-          <Typography variant="body2" sx={{ textAlign: 'center' }}>
-            {price + "₹/" + minQuantity / 1000 + "kg"}
-          </Typography>
-          <CardActions disableSpacing>
-            {
-            units === 0 ?
-            <Button variant="outlined" size="small" className="add-btn" onClick={()=>addItem(_id)}>
-             { "Add +"}
-            </Button> : 
-            <>
-             <IconButton className='unit-btn' onClick={()=>removeItem(_id)} ><Remove /></IconButton>
-             <Typography className=' unit-txt'>{units}</Typography>
-             <IconButton className='unit-btn' onClick={()=>addItem(_id)}><Add /></IconButton>
-            </>
-            }
-          </CardActions>
-        </CardContent>
+     <Box sx={{ width: '100%', margin: '10px',height:'100px' }}>
+      <Card sx={{ display: 'flex', width: '100%', elevation: 10 }} className="item-card">
+        <Grid container alignItems="center">
+          <Grid item xs={4} lg={3} sx={{ display: 'flex', justifyContent: 'center' }} >
+            <CardMedia
+              component="img"
+           
+              image={image}
+              className="item-img"
+            />
+          </Grid>
+          <Grid item xs={5} lg={6}>
+            <CardContent  className="card-content">
+              <Typography sx={{ fontWeight: 700 }}>{name}</Typography>
+              <Typography variant="body2" sx={{ fontStyle: 'italic', fontSize: '10px', fontWeight: '700',color:'#6c6c6c' }}>
+                {description}
+              </Typography>
+              <Typography variant="body2">
+                {price + '₹/' + minQuantity / 1000 + 'kg'}
+              </Typography>
+            </CardContent>
+          </Grid>
+          <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'center', paddingRight: '10px' }}>
+            <CardActions disableSpacing className="cart-action-con">
+              {units === 0 ? (
+                <Button variant="outlined" size="small" className="add-btn" onClick={() => addItem(_id)}>
+                  {'Add +'}
+                </Button>
+              ) : (
+                <>
+                  <IconButton className="unit-btn" onClick={() => removeItem(_id)}>
+                    <Remove />
+                  </IconButton>
+                  <Typography className="unit-txt">{units}</Typography>
+                  <IconButton className="unit-btn" onClick={() => addItem(_id)}>
+                    <Add />
+                  </IconButton>
+                </>
+              )}
+            </CardActions>
+          </Grid>
+        </Grid>
       </Card>
+    </Box>
     </>
   )
 }

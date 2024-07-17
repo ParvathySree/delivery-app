@@ -17,6 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between !important;
+    width:100%;
   }
   
   .MuiListItemText-root {
@@ -60,3 +61,4 @@
 
   }
 }
+
