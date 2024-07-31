@@ -20,17 +20,17 @@ This is a grocery delivery app that allows users to browse products, add them to
 
 ## Images
 
-![Login Page](./img1.png)
 *Login Page*
+![Login Page](./img1.png)
 
-![SignUp Page](./img2.png)
 *SignUp Page*
+![SignUp Page](./img2.png)
 
-![Shop Page](./img3.png)
 *Shop Page*
+![Shop Page](./img3.png)
 
-![Search](./img4)
 *Search Feature*
+![Search](./img4.png)
 
-![Cart Page](./img5.png)
 *Cart Page*
+![Cart Page](./img5.png)
